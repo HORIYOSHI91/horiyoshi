@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Style pour la page de bienvenue */
+#welcome-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+#welcome-logo {
+    width: 150px; /* Ajuste la largeur du logo pour la page de bienvenue */
+    height: auto;
+    margin-bottom: 20px; /* Espace sous le logo */
+}
+
+#welcome-screen h1 {
+    font-size: 3em;
+}
+
+#welcome-screen button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#welcome-screen button:hover {
+    background-color: darkred;
+}
+
+/* Style pour le contenu principal du site */
+#main-content {
+    animation: fadeIn 1s forwards;
+    padding-bottom: 60px; /* Ajoute de l'espace pour le footer */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+header {
+    background-color: red;
+    text-align: center;
+    padding: 20px;
+}
+
+#logo {
+    width: 200px; /* Ajuste la largeur du logo pour l'en-tête */
+    height: auto;
+    margin-bottom: 10px; /* Espace sous le logo */
+}
+
+nav ul {
+    background-color: black;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: red;
+    border-radius: 5px;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+}
+
+.item {
+    margin: 20px;
+    display: inline-block;
+}
+
+.item img {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: darkred;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative; /* Remplacé fixed par relative */
+    width: 100%;
+    bottom: 0;
+    margin-top: 20px; /* Ajoute de l'espace au-dessus du footer */
+}
+
+footer a.map-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a.map-link:hover {
+    text-decoration: underline;
+}

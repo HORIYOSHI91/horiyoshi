@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood Horiyoshi在</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- Page de bienvenue -->
+    <div id="welcome-screen">
+        <img src="https://cdn.discordapp.com/attachments/1141403620668100735/1285312228433727488/Sans_titre_20_20240916205149.png?ex=66e9cfcb&is=66e87e4b&hm=39a7c14f1a5c1f680e6ef436c850f9a440c24efed6b08425624abb86a9caa3d7&" alt="Horiyoshi在 Logo" id="welcome-logo" style="width: 400px; height: 400px;">
+        <h1>Bienvenue chez Horiyoshi在</h1>
+        <p>Le meilleur fast-food pour Tacos, Burgers, Pizzas et Desserts !</p>
+        <button onclick="enterSite()">Entrer</button>
+    </div>
+
+    <!-- Contenu du site caché au début -->
+    <div id="main-content" class="hidden">
+        <header>
+            <img src="https://cdn.discordapp.com/attachments/1141403620668100735/1285312228433727488/Sans_titre_20_20240916205149.png?ex=66e9cfcb&is=66e87e4b&hm=39a7c14f1a5c1f680e6ef436c850f9a440c24efed6b08425624abb86a9caa3d7&" alt="Horiyoshi在 Logo" id="logo" style="width: 300px;">
+            <h1>Horiyoshi在</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#tacos" class="nav-btn">Tacos</a></li>
+                <li><a href="#burgers" class="nav-btn">Burgers</a></li>
+                <li><a href="#pizzas" class="nav-btn">Pizzas</a></li>
+                <li><a href="#desserts" class="nav-btn">Desserts</a></li>
+            </ul>
+        </nav>
+
+        <section id="tacos">
+            <h2>Tacos</h2>
+            <div class="item">
+                <img src="https://s.hdnux.com/photos/01/17/50/04/20873528/3/rawImage.jpg" alt="Tacos">
+                <p>Prix : 8€</p>
+                <button onclick="afficherIngredients('tacos')">Voir ingrédients</button>
+                <p id="tacos-ingredients" class="ingredients hidden">Poulet, Viande hachée, Sauce fromagère, Frites, Fromage</p>
+            </div>
+        </section>
+
+        <section id="burgers">
+            <h2>Burgers</h2>
+            <div class="item">
+                <img src="https://cmx.weightwatchers.com/assets-proxy/weight-watchers/image/upload/v1594406683/visitor-site/prod/ca/burgers_masthead_xtkxft" alt="Burger">
+                <p>Prix : 10€</p>
+                <button onclick="afficherIngredients('burger')">Voir ingrédients</button>
+                <p id="burger-ingredients" class="ingredients hidden">Bœuf, Laitue, Tomate, Oignon, Fromage, Sauce spéciale</p>
+            </div>
+        </section>
+
+        <section id="pizzas">
+            <h2>Pizzas</h2>
+            <div class="item">
+                <img src="https://th.bing.com/th/id/R.7713bdb666f897112023111fb73858e0?rik=DS06y3sjAWVipw&riu=http%3a%2f%2fsavoritalytours.com%2fwp-content%2fuploads%2f2015%2f11%2fpizza_class_picture.jpg&ehk=hb9sW0EJPt7jsRPeA4scbJytK1fPoH7REhJ5uZNOdkY%3d&risl=&pid=ImgRaw&r=0" alt="Pizza">
+                <p>Prix : 12€</p>
+                <button onclick="afficherIngredients('pizza')">Voir ingrédients</button>
+                <p id="pizza-ingredients" class="ingredients hidden">Sauce tomate, Fromage mozzarella, Champignons, Jambon, Olives</p>
+            </div>
+        </section>
+
+        <section id="desserts">
+            <h2>Desserts</h2>
+            <div class="item">
+                <img src="https://bing.com/th?id=OSK.b564f540f3b343c1cb7b4f049932e0e3" alt="Tiramisu">
+                <p>Prix : 6€</p>
+                <button onclick="afficherIngredients('tiramisu')">Voir ingrédients</button>
+                <p id="tiramisu-ingredients" class="ingredients hidden">Café, Mascarpone, Cacao, Biscuits, Sucre</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Nous trouver :</p>
+        <a href="https://www.google.com/maps?q=48.7570,2.5985" target="_blank" class="map-link">Voir sur Google Maps</a>
+        <p>&copy; 2024 Horiyoshi在</p>
+    </footer>
+
+    <script>
+        // Fonction pour entrer sur le site depuis la page de bienvenue
+        function enterSite() {
+            // Masquer l'écran de bienvenue
+            document.getElementById('welcome-screen').style.display = 'none';
+
+            // Afficher le contenu principal
+            document.getElementById('main-content').classList.remove('hidden');
+        }
+
+        // Fonction pour afficher ou masquer les ingrédients
+        function afficherIngredients(item) {
+            const ingredientElement = document.getElementById(item + '-ingredients');
+            if (ingredientElement.classList.contains('hidden')) {
+                ingredientElement.classList.remove('hidden');
+            } else {
+                ingredientElement.classList.add('hidden');
+            }
+        }
+
+        // Gestion du swipe pour passer d'une section à une autre
+        let currentSection = 0;
+        const sections = document.querySelectorAll('section');
+
+        document.addEventListener('touchstart', handleTouchStart, false);
+        document.addEventListener('touchmove', handleTouchMove, false);
+
+        let xDown = null;
+
+        function handleTouchStart(evt) {
+            xDown = evt.touches[0].clientX;
+        }
+
+        function handleTouchMove(evt) {
+            if (!xDown) {
+                return;
+            }
+
+            let xUp = evt.touches[0].clientX;
+            let xDiff = xDown - xUp;
+
+            if (xDiff > 0) {
+                // Swipe gauche -> section suivante
+                nextSection();
+            } else {
+                // Swipe droite -> section précédente
+                previousSection();
+            }
+
+            xDown = null;
+        }
+
+        function nextSection() {
+            if (currentSection < sections.length - 1) {
+                sections[currentSection].classList.add('hidden');
+                currentSection++;
+                sections[currentSection].classList.remove('hidden');
+            }
+        }
+
+        function previousSection() {
+            if (currentSection > 0) {
+                sections[currentSection].classList.add('hidden');
+                currentSection--;
+                sections[currentSection].classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
